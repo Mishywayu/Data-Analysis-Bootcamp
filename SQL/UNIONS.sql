@@ -22,8 +22,42 @@ UNION ALL
 SELECT Name, Grade FROM table2;
 
 
-
 select * from employee_demographics;
 select * from employee_salary;
-select * from parks_departments;
+-- select * from parks_departments;
+
+select age, gender from employee_demographics
+UNION
+select first_name, last_name from employee_salary
+; # bad data
+
+select first_name, last_name from employee_demographics
+UNION
+select first_name, last_name from employee_salary
+;
+
+select first_name, last_name from employee_demographics
+UNION DISTINCT
+select first_name, last_name from employee_salary
+;
+
+-- OUTPUT ALL RESULTS WITHOUT REMOVING ANY DUPLICATES
+select first_name, last_name from employee_demographics
+UNION ALL
+select first_name, last_name from employee_salary
+;
+
+select first_name, last_name, 'OLD MAN' as label 
+from employee_demographics
+where age > 40 AND gender = 'Male'
+UNION
+select first_name, last_name, 'OLD LADY' as label 
+from employee_demographics
+where age > 40 AND gender = 'Female'
+UNION
+select first_name, last_name, 'HIGHLY PAID EMPLOYEE' as label 
+from employee_salary
+where salary > 70000
+ORDER BY first_name, last_name
+;
 
