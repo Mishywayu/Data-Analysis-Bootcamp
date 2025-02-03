@@ -76,6 +76,71 @@ This query:
 - Obfuscates email addresses.
 
 ------------------Back to bootcamp
+USE parks_and_recreation;
+
+select LENGTH("Michelle");
+
+select first_name, length(first_name) 
+from employee_demographics
+ORDER BY 2;
+
+
+select UPPER("Michelle");
+select LOWER("Michelle");
+
+select first_name, UPPER(first_name) 
+from employee_demographics
+;
+
+select first_name, LOWER(first_name) 
+from employee_demographics
+;
+
+
+select TRIM("		Michelle		");
+select ("Michelle");
+select LTRIM("		Michelle		");
+select RTRIM("		Michelle		");
+
+
+-- SUBSTRING
+select "Michelle" AS main,
+LEFT("Michelle", 4) AS leftSub,
+RIGHT("Michelle", 4) AS rightSub;
+
+select first_name, 
+	LEFT(first_name, 4) as leftSub,
+    RIGHT(first_name, 3) as rightSub,
+    SUBSTRING(first_name,3,2) as Sub,
+    birth_date,
+    SUBSTRING(birth_date,6,2) as birth_month
+from employee_demographics
+;
+
+
+-- replace
+select 'Michelle' as main, REPLACE("Michelle","e","D") as new;
+
+select first_name, REPLACE(first_name,"Tom","Jerry")
+from employee_demographics
+;
+
+
+-- locate
+select LOCATE("c","Michelle"); -- shows position where c is located
+
+select first_name, LOCATE("An",first_name)
+from employee_demographics
+;
+
+
+-- concat
+select CONCAT("Michelle", " ", "Wayua") as Name;
+
+select first_name, last_name,
+CONCAT(first_name, " ",last_name) as name
+from employee_demographics
+;
 
 
 
