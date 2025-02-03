@@ -47,3 +47,36 @@ SELECT
 FROM orders;
 
 
+-- BACK TO BOOTCAMP
+USE parks_and_recreation;
+
+select * from employee_demographics;
+select * from employee_salary;
+select * from parks_departments;
+
+select first_name,
+last_name,
+age,
+CASE
+	WHEN age <= 30 THEN "Young"
+    WHEN age BETWEEN 31 AND 50 THEN "Old"
+    WHEN age > 50 THEN "On Death's Door"
+END AS age_bracket
+from employee_demographics
+;
+
+-- Pay increase and bonus
+-- < 50,000 = 5%
+-- > 50,000 = 7%
+-- Finance = 10% bonus
+select first_name,
+last_name,
+salary,
+CASE
+	WHEN salary < 50000 THEN salary + (salary * 0.05)
+    WHEN salary > 50000 THEN salary + (salary * 0.07)
+END as new_salary,
+CASE
+	WHEN dept_id = 6 THEN salary + (salary * 0.1)
+END as bonus
+from employee_salary;
