@@ -59,6 +59,23 @@ left join order_items b on a.book_id = b.book_id
 where b.book_id is null;
 
 -- Rank customers by their total spending using window functions.
+select a.customer_id,concat(a.first_name,' ',a.last_name) as customer_name, 
+	   sum(b.total_amount) as total_spending,
+       RANK() over (ORDER BY sum(b.total_amount) DESC) as spending_rank
+from customers a
+join orders b on a.customer_id = b.customer_id
+group by a.customer_id
+;
+
+-- Find the monthly revenue for the current year and compare it with the previous year.
+SELECT 
+    MONTH(order_date) AS month,
+    SUM(CASE WHEN YEAR(order_date) = YEAR(CURDATE()) THEN total_amount ELSE 0 END) AS current_year_revenue,
+    SUM(CASE WHEN YEAR(order_date) = YEAR(CURDATE()) - 1 THEN total_amount ELSE 0 END) AS previous_year_revenue
+FROM Orders
+WHERE YEAR(order_date) IN (YEAR(CURDATE()), YEAR(CURDATE()) - 1)
+GROUP BY month
+ORDER BY month;
 
 
 
