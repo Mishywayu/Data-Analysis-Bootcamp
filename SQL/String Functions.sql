@@ -75,7 +75,7 @@ This query:
 - Shows the length of each name.
 - Obfuscates email addresses.
 
-------------------Back to bootcamp
+-- Back to bootcamp
 USE parks_and_recreation;
 
 select LENGTH("Michelle");
